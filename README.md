@@ -68,7 +68,7 @@ $ sbt dist
 
 copy the generated zip file to your required path 
 ```
-<your execution path >$ < YOUR WORKSPACE >/atm-locator-service/target/universal/atmlocatorservice-1.0.zip .
+<your execution path >$cp < YOUR WORKSPACE >/atm-locator-service/target/universal/atmlocatorservice-1.0.zip .
 ```
 
 unzip the archive locally ( atmlocatorservice-1.0.zip), with your unzip tool ( i.e unzip )
