@@ -57,6 +57,41 @@ for example
 http://localhost:9000/atmlocation/Hilversum
 ```
 
+
+
+## Generate executable application 
+
+sbt dist will generate required zip file with self contained dependacies and executions file
+```
+$ sbt dist
+```
+
+copy the generated zip file to your required path 
+```
+<your execution path >$ < YOUR WORKSPACE >/atm-locator-service/target/universal/atmlocatorservice-1.0.zip .
+```
+
+unzip the archive locally ( atmlocatorservice-1.0.zip), with your unzip tool ( i.e unzip )
+```
+<your execution path >$ unzip atmlocatorservice-1.0.zip 
+```
+
+execute the application by running ( for linux based OS)
+
+```
+<your execution path >$ chmod +x ./atmlocatorservice-1.0/bin/atmlocatorservice
+<your execution path >$ ./atmlocatorservice-1.0/bin/atmlocatorservice
+
+```
+
+
+execute the application by running ( for windows  OS)
+
+```
+<your execution path >$ ./atmlocatorservice-1.0/bin/atmlocatorservice.bat
+
+```
+
 ## Generating docker files and resources
 
 Enter the following coomand at the project folder to generate docker files and the resources
