@@ -1,29 +1,41 @@
 import controllers.Controller
-import org.junit.Assert.{assertEquals, assertTrue}
-import org.junit.Test
-import play.api.mvc.{Results, _}
-import play.api.test.Helpers._
 import play.api.test._
-import play.mvc.Http.Status.OK
-import play.test.Helpers._
-
-import scala.concurrent.Future
 
 
+class ControllerTest extends PlaySpecification {
 
-class ControllerTest  extends PlaySpec with Results {
+  "respond to the index Action" in new WithApplication {
+    val controller = app.injector.instanceOf[Controller]
+    val result = controller.index()(FakeRequest())
 
+    status(result) must equalTo(OK)
 
-
-
-  "Example Page#index" should {
-    "should be valid" in {
-      val controller = new Controller()
-      val result: Future[Result] = controller.index().apply(FakeRequest())
-      val bodyText: String = contentAsString(result)
-      bodyText mustBe "ok"
-    }
   }
+
+
+  "respond to the /atmlocation Action when passed a test-name" in new WithApplication {
+    val controller = app.injector.instanceOf[Controller]
+    val testCity="TestCity"
+    val result = controller.atmLocation(testCity)(FakeRequest())
+    status(result) must equalTo(OK)
+    contentType(result) must beSome("text/html")
+    contentAsString(result) must contain("No ING ATM(s) found in TestCity")
+  }
+
+  "respond to the /atmlocation Action when passed a valid city name" in new WithApplication {
+    val controller = app.injector.instanceOf[Controller]
+    val testCity="amsterdam"
+    val result = controller.atmLocation(testCity)(FakeRequest())
+    status(result) must equalTo(OK)
+    contentType(result) must beSome("text/html")
+    contentAsString(result) must contain("ING ATM(s) within Amsterdam")
+  }
+
+
+
+
+
+
 
 }
 
