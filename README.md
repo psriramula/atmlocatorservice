@@ -47,6 +47,16 @@ Once you are in SBT console type the following command
 ```
 SBT Command PRMOBT> run 9000
 ```
+
+## Access the application within local environment
+
+
+```
+http://localhost:9000/atmlocation/<CITY NAME >
+for example 
+http://localhost:9000/atmlocation/Hilversum
+```
+
 ## Generating docker files and resources
 
 Enter the following coomand at the project folder to generate docker files and the resources

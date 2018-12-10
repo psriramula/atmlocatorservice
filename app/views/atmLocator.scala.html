@@ -1,0 +1,39 @@
+@*
+ * ATM Locator  takes a two arguments,
+* a String containing a city name
+* list of ATM Locations
+ *@
+@import model._
+@(cityName:String, atmLocations: List[ATMLocation])
+@main(s"ING ATM(s) Locations within ${cityName.capitalize}") {
+
+    @if(atmLocations.size > 0){
+
+        <h1 style="page-header"> ING ATM(s) within @cityName.capitalize  </h1><br>
+
+        <table style="table">
+            <tr>
+                <th style="th">Street       </th>
+                <th style="th">House Number </th>
+                <th style="th">Postcode     </th>
+                <th style="th">City         </th>
+                <th style="th">Distance     </th>
+                <th style="th">GeoLocation  </th>
+            </tr>
+        @for(location <- atmLocations){
+            <tr>
+                <td style="tr"> @location.address.street</td>
+                <td style="tr">@location.address.housenumber</td>
+                <td style="tr">@location.address.postalcode</td>
+                <td style="tr">@location.address.city.capitalize</td>
+                <td style="tr">@location.distance </td>
+                <td style="tr">latitude: @location.address.geoLocation.lat Longitude :@location.address.geoLocation.lng <br>
+                 <a href="http://maps.google.com/?q=@location.address.geoLocation.lat,@location.address.geoLocation.lng" target="_blank">locate on google maps</a>
+                </td>
+            </tr>
+        }
+        </table>
+    }else{
+        <h1 style="page-header">No ING ATM(s) found in @cityName.capitalize  </h1>
+    }
+}
